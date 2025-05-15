@@ -53,7 +53,6 @@ type Coverage struct {
 	} `json:"totalRows"`
 }
 
-// Policy represents a top-level policy with integer compliant/noncompliant counts
 type Policy struct {
 	Compliant    int    `json:"compliant"`
 	Noncompliant int    `json:"noncompliant"`
@@ -61,7 +60,6 @@ type Policy struct {
 	PolicyOwner  string `json:"policyOwner"`
 }
 
-// RowPolicy represents a row-level policy with boolean compliant field
 type RowPolicy struct {
 	Compliant   bool   `json:"compliant"`
 	Policy      string `json:"policy"`

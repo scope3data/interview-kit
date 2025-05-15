@@ -1,4 +1,4 @@
-# go-interview-kit
+# golang-interview-kit
 
 A Go CLI tool for interacting with the Measure API. This tool provides commands for measuring and analyzing data through a simple command-line interface.
 
@@ -8,8 +8,8 @@ This CLI uses the Scope3 Measure API, you can find the documentation here: https
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/scope3data/go-interview-kit
-cd go-interview-kit
+git clone https://github.com/scope3data/golang-interview-kit
+cd golang-interview-kit
 ```
 
 2. Copy the environment template and set up your environment variables:
