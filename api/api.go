@@ -38,7 +38,7 @@ func (c *Client) Measure(inventoryIds []string, requestDate string) (*MeasureRes
 	})
 
 	if err != nil {
-    	return nil, fmt.Errorf("failed to marshal request: %w", err)
+		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
 	params := NewMeasureQueryParams()
@@ -50,7 +50,7 @@ func (c *Client) Measure(inventoryIds []string, requestDate string) (*MeasureRes
 	}
 
 	log.WithFields(log.Fields{
-		"URL": requestUrl,
+		"URL":  requestUrl,
 		"Body": jsonData,
 	}).Debug("Request Details")
 
@@ -68,15 +68,15 @@ func (c *Client) Measure(inventoryIds []string, requestDate string) (*MeasureRes
 	}
 	defer response.Body.Close()
 
-    bodyBytes, err := io.ReadAll(response.Body)
-    if err != nil {
-        return nil, fmt.Errorf("failed to read response body: %w", err)
-    }
+	bodyBytes, err := io.ReadAll(response.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response body: %w", err)
+	}
 
-    if response.StatusCode != http.StatusOK {
-        return nil, fmt.Errorf("unexpected status code: %d, body: %s",
-            response.StatusCode, string(bodyBytes))
-    }
+	if response.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("unexpected status code: %d, body: %s",
+			response.StatusCode, string(bodyBytes))
+	}
 
 	if response.StatusCode != http.StatusOK {
 		fmt.Printf("Error Response Body: %d\n", response.Body)
@@ -84,10 +84,10 @@ func (c *Client) Measure(inventoryIds []string, requestDate string) (*MeasureRes
 	}
 
 	var result MeasureResponse
-    if err := json.NewDecoder(bytes.NewReader(bodyBytes)).Decode(&result); err != nil {
-        return nil, fmt.Errorf("failed to decode response: %w, body: %s",
-            err, string(bodyBytes))
-    }
+	if err := json.NewDecoder(bytes.NewReader(bodyBytes)).Decode(&result); err != nil {
+		return nil, fmt.Errorf("failed to decode response: %w, body: %s",
+			err, string(bodyBytes))
+	}
 
 	return &result, nil
 }

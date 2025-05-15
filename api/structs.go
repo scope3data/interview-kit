@@ -10,18 +10,18 @@ type MeasureRow struct {
 	Impressions   int    `json:"impressions"`
 	UtcDatetime   string `json:"utcDatetime"`
 	InventoryId   string `json:"inventoryId"`
-	AppStore    string `json:"appStore"`
-	Country     string `json:"country"`
-	Region      string `json:"region"`
-	DeviceType  string `json:"deviceType"`
-	Channel     string `json:"channel"`
-	Network     string `json:"network"`
+	AppStore      string `json:"appStore"`
+	Country       string `json:"country"`
+	Region        string `json:"region"`
+	DeviceType    string `json:"deviceType"`
+	Channel       string `json:"channel"`
+	Network       string `json:"network"`
 }
 
 type RequestRow struct {
-	InventoryId string `json:"inventoryId"`
-	Impressions int    `json:"impressions"`
-	DeviceType  string `json:"deviceType"`
+	InventoryId   string `json:"inventoryId"`
+	Impressions   int    `json:"impressions"`
+	DeviceType    string `json:"deviceType"`
 	RowIdentifier string `json:"rowIdentifier"`
 	UtcDatetime   string `json:"utcDatetime"`
 }
@@ -37,19 +37,19 @@ func NewRequestRow(inventoryId string, utcDatetime string) *RequestRow {
 }
 
 type MeasureQueryParams struct {
-    IncludeRows bool   `url:"includeRows"` // default is true
-    Latest      bool   `url:"latest"` // default is false
-    Fields      string `url:"fields"` // default is "all"
-    Framework   string `url:"framework"` // default is "scope3"
+	IncludeRows bool   `url:"includeRows"` // default is true
+	Latest      bool   `url:"latest"`      // default is false
+	Fields      string `url:"fields"`      // default is "all"
+	Framework   string `url:"framework"`   // default is "scope3"
 }
 
 func (p *MeasureQueryParams) ToQueryString() string {
-    values := url.Values{}
-    values.Add("includeRows", strconv.FormatBool(p.IncludeRows))
-    values.Add("latest", strconv.FormatBool(p.Latest))
-    values.Add("fields", p.Fields)
-    values.Add("framework", p.Framework)
-    return values.Encode()
+	values := url.Values{}
+	values.Add("includeRows", strconv.FormatBool(p.IncludeRows))
+	values.Add("latest", strconv.FormatBool(p.Latest))
+	values.Add("fields", p.Fields)
+	values.Add("framework", p.Framework)
+	return values.Encode()
 }
 
 func NewMeasureQueryParams() *MeasureQueryParams {

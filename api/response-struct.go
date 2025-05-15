@@ -5,12 +5,12 @@ import (
 )
 
 type MeasureResponse struct {
-	Coverage               Coverage               `json:"coverage"`
-	Policies              []Policy               `json:"policies"`
-	RequestID             string                 `json:"requestId"`
-	TotalEmissions        float64               `json:"totalEmissions"`
-	TotalEmissionsBreakdown EmissionsBreakdown    `json:"totalEmissionsBreakdown"`
-	Rows                  []Row                  `json:"rows"`
+	Coverage                Coverage           `json:"coverage"`
+	Policies                []Policy           `json:"policies"`
+	RequestID               string             `json:"requestId"`
+	TotalEmissions          float64            `json:"totalEmissions"`
+	TotalEmissionsBreakdown EmissionsBreakdown `json:"totalEmissionsBreakdown"`
+	Rows                    []Row              `json:"rows"`
 }
 
 type Coverage struct {
@@ -76,13 +76,13 @@ type EmissionsBreakdown struct {
 }
 
 type Row struct {
-	Coverage          RowCoverage          `json:"coverage"`
+	Coverage           RowCoverage           `json:"coverage"`
 	EmissionsBreakdown RowEmissionsBreakdown `json:"emissionsBreakdown"`
-	InventoryCoverage  string               `json:"inventoryCoverage"`
-	Policies           []RowPolicy          `json:"policies"`  // Changed to RowPolicy
-	RowIdentifier      string               `json:"rowIdentifier"`
-	TotalEmissions     float64              `json:"totalEmissions"`
-	Internal           Internal             `json:"internal"`
+	InventoryCoverage  string                `json:"inventoryCoverage"`
+	Policies           []RowPolicy           `json:"policies"` // Changed to RowPolicy
+	RowIdentifier      string                `json:"rowIdentifier"`
+	TotalEmissions     float64               `json:"totalEmissions"`
+	Internal           Internal              `json:"internal"`
 }
 
 type RowCoverage struct {
@@ -169,25 +169,25 @@ type RowEmissionsBreakdown struct {
 }
 
 type Internal struct {
-	CountryRegionGCO2PerKwh int     `json:"countryRegionGCO2PerKwh"`
-	CountryRegionCountry    string  `json:"countryRegionCountry"`
-	Channel                 string  `json:"channel"`
-	DeviceType             string  `json:"deviceType"`
-	PropertyId             int     `json:"propertyId"`
-	PropertyInventoryType  string  `json:"propertyInventoryType"`
-	PropertyName           string  `json:"propertyName"`
-	BenchmarkPercentile    int     `json:"benchmarkPercentile"`
-	IsMFA                  bool    `json:"isMFA"`
-	PolicyEvaluationData   PolicyEvaluationData `json:"policyEvaluationData"`
+	CountryRegionGCO2PerKwh int                  `json:"countryRegionGCO2PerKwh"`
+	CountryRegionCountry    string               `json:"countryRegionCountry"`
+	Channel                 string               `json:"channel"`
+	DeviceType              string               `json:"deviceType"`
+	PropertyId              int                  `json:"propertyId"`
+	PropertyInventoryType   string               `json:"propertyInventoryType"`
+	PropertyName            string               `json:"propertyName"`
+	BenchmarkPercentile     int                  `json:"benchmarkPercentile"`
+	IsMFA                   bool                 `json:"isMFA"`
+	PolicyEvaluationData    PolicyEvaluationData `json:"policyEvaluationData"`
 }
 
 type PolicyEvaluationData struct {
-	PropertyId          int    `json:"propertyId"`
-	IsMFA              bool   `json:"isMFA"`
-	IsInventory        bool   `json:"isInventory"`
-	Channel            string `json:"channel"`
-	ChannelStatus      string `json:"channelStatus"`
-	BenchmarksPercentile int  `json:"benchmarksPercentile"`
+	PropertyId           int    `json:"propertyId"`
+	IsMFA                bool   `json:"isMFA"`
+	IsInventory          bool   `json:"isInventory"`
+	Channel              string `json:"channel"`
+	ChannelStatus        string `json:"channelStatus"`
+	BenchmarksPercentile int    `json:"benchmarksPercentile"`
 }
 
 func (r *MeasureResponse) String() string {
