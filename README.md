@@ -28,4 +28,4 @@ You are welcome to use all the development tools you would typically have availa
 While AI assistants and LLMs (like ChatGPT or GitHub Copilot) are valuable tools in modern development, please refrain from using them to solve the core problems in this exercise. We want to evaluate your problem-solving approach, coding style, and technical decision-making abilities firsthand. You may use them for reference purposes, such as looking up language syntax or understanding library documentation, but not for generating solution code or problem-solving logic.
 
 ### Can I use additional libraries?
-Yes, you can use any standard libraries or common third-party packages that would help you complete the task efficiently. Just make sure to document any dependencies in your implementation's README.
+Yes, you can use any standard libraries or common third-party packages that would help you complete the task efficiently.
