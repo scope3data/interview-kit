@@ -1,10 +1,11 @@
 # TypeScript Measure CLI
 
-This is a TypeScript implementation of the Scope3 Measure CLI.
+This is a TypeScript implementation of the Scope3 Measure CLI. This project uses Bun as the runtime environment for TypeScript.
 
 ## Prerequisites
 
 - Node 20 or higher
+- Bun
 
 ## Setup
 
@@ -18,7 +19,7 @@ cd interview-kit/typescript
 ### 2. Install Dependencies
 
 ```bash
-npm install
+npx --yes bun install
 ```
 
 ## Configuration
@@ -41,7 +42,7 @@ LOG_LEVEL="debug"  # Optional: Change log level if needed (default: debug)
 You can run the CLI by executing the following command:
 
 ```bash
-npm run cli $command
+bun run cli $command
 ```
 
 ### Test API Connection
@@ -49,7 +50,7 @@ npm run cli $command
 Test that the API is reachable and your API key is properly configured:
 
 ```bash
-npm run cli probe
+bun run cli probe
 ```
 
 You should see this output:

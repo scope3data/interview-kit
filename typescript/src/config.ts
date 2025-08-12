@@ -1,5 +1,3 @@
-import * as dotenv from "dotenv";
-
 export type LogLevel = "debug" | "info" | "warn" | "error" | "fatal";
 
 export class Config {
@@ -8,10 +6,6 @@ export class Config {
 	private _logLevel: LogLevel;
 
 	private constructor() {
-		dotenv.config();
-
-		console.log({ API_KEY: process.env.API_KEY })
-
 		const apiKey = process.env.API_KEY;
 		if (!apiKey) {
 			throw new Error("API_KEY environment variable is required");
