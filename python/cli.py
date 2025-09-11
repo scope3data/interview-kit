@@ -36,6 +36,15 @@ def trends():
     """Fetches the top trending domains"""
     click.echo("Not implemented!")
 
+@cli.command()
+@click.argument('properties', nargs=-1, required=True)
+@click.option('-d', '--date', help='Date to compare against')
+def compare(properties, date):
+    """Compares emission data across properties"""
+    options = {'date': date}
+    result = {'properties': list(properties), 'options': options}
+    click.echo(f"{result} compare arguments!")
+
 def execute():
     """Entry point for the CLI"""
     try:

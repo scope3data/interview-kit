@@ -25,6 +25,7 @@ func initClient() *api.Client {
 func init() {
 	cobra.OnInitialize(func() { initClient() })
 	rootCmd.AddCommand(probeCmd)
+	rootCmd.AddCommand(compareCmd)
 }
 
 var rootCmd = &cobra.Command{
@@ -47,6 +48,30 @@ var probeCmd = &cobra.Command{
 		}
 		fmt.Println(response.String())
 	},
+}
+
+var compareCmd = &cobra.Command{
+	Use:   "compare [properties...]",
+	Short: "compares emission data across properties",
+	Args:  cobra.MinimumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		date, _ := cmd.Flags().GetString("date")
+
+		options := map[string]interface{}{
+			"date": date,
+		}
+
+		result := map[string]interface{}{
+			"properties": args,
+			"options":    options,
+		}
+
+		fmt.Printf("%+v compare arguments!\n", result)
+	},
+}
+
+func init() {
+	compareCmd.Flags().StringP("date", "d", "", "Date to compare against")
 }
 
 func Execute() {
