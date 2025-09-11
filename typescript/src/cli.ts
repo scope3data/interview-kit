@@ -20,4 +20,17 @@ Breakdown:\n
 	console.log(toLog);
 });
 
+program
+	.command("compare")
+	.argument("<properties...>")
+	.option("-d, --date <date>", "Date to compare against")
+	.action(
+		async (
+			properties: string[],
+			options: { date?: string; output?: string },
+		) => {
+			console.log({ properties, options }, "compare arguments!");
+		},
+	);
+
 program.parse();
