@@ -4,7 +4,7 @@ click==8.1.8
 dataclasses-json==0.6.7
 dotenv==0.9.9
 idna==3.10
-marshmallow==3.22.0
+marshmallow==3.26.2
 mypy_extensions==1.1.0
 packaging==25.0
 python-dotenv==1.0.1
