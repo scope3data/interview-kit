@@ -24,6 +24,7 @@ interface RequestRow {
 	deviceType: string;
 	rowIdentifier: string;
 	utcDatetime: string;
+	country: string;
 }
 
 interface MeasureQueryParams {
@@ -68,6 +69,7 @@ class Client {
 			deviceType: "pc",
 			rowIdentifier: inventoryId,
 			utcDatetime,
+			country: "US",
 		};
 	}
 
@@ -86,6 +88,7 @@ class Client {
 				deviceType: row.deviceType,
 				rowIdentifier: row.rowIdentifier,
 				utcDatetime: row.utcDatetime,
+				country: row.country,
 			})),
 		};
 

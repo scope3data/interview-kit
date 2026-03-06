@@ -1,6 +1,6 @@
-from dataclasses import dataclass
-from typing import List
-from dataclasses_json import DataClassJsonMixin, dataclass_json
+from dataclasses import dataclass, field
+from typing import List, Optional
+from dataclasses_json import DataClassJsonMixin, dataclass_json, config
 
 @dataclass_json
 @dataclass
@@ -109,10 +109,10 @@ class SupplyGraph:
 class RowCoverage:
     adFormat: AdFormatCoverage
     channel: SimpleValue
-    compensationProvider: SimpleValue
     impressions: Impressions
     property: SimpleValue
     supplyGraph: SupplyGraph
+    compensationProvider: Optional[SimpleValue] = None
 
 @dataclass_json
 @dataclass
@@ -187,13 +187,14 @@ class PolicyEvaluationData:
 @dataclass_json
 @dataclass
 class Internal:
-    countryRegionGCO2PerKwh: int
+    countryRegionGCO2PerKwh: float
     countryRegionCountry: str
     channel: str
     deviceType: str
     propertyId: int
     propertyInventoryType: str
     propertyName: str
+    matchedInventoryId: str
     benchmarkPercentile: int
     isMFA: bool
     policyEvaluationData: PolicyEvaluationData

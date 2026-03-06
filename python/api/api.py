@@ -34,6 +34,7 @@ class RequestRow:
     device_type: str
     row_identifier: str
     utc_datetime: str
+    country: str
 
     @classmethod
     def new(cls, inventory_id: str, utc_datetime: str) -> 'RequestRow':
@@ -51,7 +52,8 @@ class RequestRow:
             impressions=1,
             device_type="pc",
             row_identifier=inventory_id,
-            utc_datetime=utc_datetime
+            utc_datetime=utc_datetime,
+            country="US"
         )
 
 @dataclass
@@ -110,7 +112,8 @@ class Client:
                         "impressions": row.impressions,
                         "deviceType": row.device_type,
                         "rowIdentifier": row.row_identifier,
-                        "utcDatetime": row.utc_datetime
+                        "utcDatetime": row.utc_datetime,
+                        "country": row.country
                     }
                     for row in rows
                 ]
