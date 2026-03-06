@@ -24,6 +24,7 @@ type RequestRow struct {
 	DeviceType    string `json:"deviceType"`
 	RowIdentifier string `json:"rowIdentifier"`
 	UtcDatetime   string `json:"utcDatetime"`
+	Country       string `json:"country"`
 }
 
 func NewRequestRow(inventoryId string, utcDatetime string) *RequestRow {
@@ -33,6 +34,7 @@ func NewRequestRow(inventoryId string, utcDatetime string) *RequestRow {
 		DeviceType:    "pc",
 		RowIdentifier: inventoryId,
 		UtcDatetime:   utcDatetime,
+		Country:       "US",
 	}
 }
 

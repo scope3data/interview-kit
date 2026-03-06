@@ -89,7 +89,7 @@ interface SupplyGraph {
 interface RowCoverage {
 	adFormat: AdFormatCoverage;
 	channel: SimpleValue;
-	compensationProvider: SimpleValue;
+	compensationProvider?: SimpleValue;
 	impressions: Impressions;
 	property: SimpleValue;
 	supplyGraph: SupplyGraph;
@@ -162,6 +162,7 @@ interface Internal {
 	propertyId: number;
 	propertyInventoryType: string;
 	propertyName: string;
+	matchedInventoryId: string;
 	benchmarkPercentile: number;
 	isMFA: boolean;
 	policyEvaluationData: PolicyEvaluationData;

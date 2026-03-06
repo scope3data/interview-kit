@@ -94,7 +94,7 @@ type RowCoverage struct {
 	Channel struct {
 		Value string `json:"value"`
 	} `json:"channel"`
-	CompensationProvider struct {
+	CompensationProvider *struct {
 		Value string `json:"value"`
 	} `json:"compensationProvider"`
 	Impressions struct {
@@ -169,13 +169,14 @@ type RowEmissionsBreakdown struct {
 }
 
 type Internal struct {
-	CountryRegionGCO2PerKwh int                  `json:"countryRegionGCO2PerKwh"`
+	CountryRegionGCO2PerKwh float64              `json:"countryRegionGCO2PerKwh"`
 	CountryRegionCountry    string               `json:"countryRegionCountry"`
 	Channel                 string               `json:"channel"`
 	DeviceType              string               `json:"deviceType"`
 	PropertyId              int                  `json:"propertyId"`
 	PropertyInventoryType   string               `json:"propertyInventoryType"`
 	PropertyName            string               `json:"propertyName"`
+	MatchedInventoryId      string               `json:"matchedInventoryId"`
 	BenchmarkPercentile     int                  `json:"benchmarkPercentile"`
 	IsMFA                   bool                 `json:"isMFA"`
 	PolicyEvaluationData    PolicyEvaluationData `json:"policyEvaluationData"`
