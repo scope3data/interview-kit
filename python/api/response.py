@@ -1,4 +1,3 @@
-import json
 from dataclasses import dataclass
 from typing import List, Optional
 
@@ -271,7 +270,6 @@ class MeasureResponse(DataClassJsonMixin):
     rows: Optional[List[Row]] = None
 
     def __str__(self) -> str:
-        print(json.dumps(self.to_dict(), indent=2))
         return (
             f"RequestID: {self.requestId}\n"
             f"Total Emissions: {self.totalEmissions:.4f}\n"
