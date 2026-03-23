@@ -1,14 +1,17 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import List, Optional
-from dataclasses_json import DataClassJsonMixin, dataclass_json, config
+
+from dataclasses_json import DataClassJsonMixin, dataclass_json
+
 
 @dataclass_json
 @dataclass
 class AdFormats:
-    generic: int
     metric: str
+    generic: int
     unknown: int
     vendorSpecific: int
+
 
 @dataclass_json
 @dataclass
@@ -18,12 +21,15 @@ class Channels:
     modeled: int
     unknown: int
 
+
 @dataclass_json
 @dataclass
 class BaseMetric:
     metric: str
     modeled: int
     unknown: int
+    verifiedRate: Optional[float] = None
+
 
 @dataclass_json
 @dataclass
@@ -32,16 +38,18 @@ class TotalMetric:
     modeled: int
     skipped: int
 
+
 @dataclass_json
 @dataclass
 class Coverage:
-    adFormats: AdFormats
-    channels: Channels
-    mediaOwners: BaseMetric
-    properties: BaseMetric
-    sellers: BaseMetric
     totalImpressions: TotalMetric
     totalRows: TotalMetric
+    adFormats: Optional[AdFormats] = None
+    channels: Optional[Channels] = None
+    mediaOwners: Optional[BaseMetric] = None
+    properties: Optional[BaseMetric] = None
+    sellers: Optional[BaseMetric] = None
+
 
 @dataclass_json
 @dataclass
@@ -51,6 +59,7 @@ class Policy:
     policy: str
     policyOwner: str
 
+
 @dataclass_json
 @dataclass
 class RowPolicy:
@@ -58,12 +67,17 @@ class RowPolicy:
     policy: str
     policyOwner: str
 
+
 @dataclass_json
 @dataclass
 class EmissionsTotals:
-    adSelection: float
-    creativeDelivery: float
-    mediaDistribution: float
+    adSelection: Optional[float] = None
+    compensated: Optional[float] = None
+    creativeDelivery: Optional[float] = None
+    disposal: Optional[float] = None
+    mediaDistribution: Optional[float] = None
+    techManipulation: Optional[float] = None
+
 
 @dataclass_json
 @dataclass
@@ -71,17 +85,22 @@ class EmissionsBreakdown:
     framework: str
     totals: EmissionsTotals
 
+
 @dataclass_json
 @dataclass
 class AdFormatCoverage:
     name: str
     value: str
-    verified: bool
+    vendor: Optional[str] = None
+    verified: Optional[bool] = None
+
 
 @dataclass_json
 @dataclass
 class SimpleValue:
     value: str
+    verified: Optional[bool] = None
+
 
 @dataclass_json
 @dataclass
@@ -90,34 +109,43 @@ class Impressions:
     processed: int
     skipped: int
 
+
 @dataclass_json
 @dataclass
 class SupplyGraphDepth:
-    averageDepth: float
-    maxDepth: int
-    minDepth: int
+    averageDepth: Optional[float] = None
+    maxDepth: Optional[int] = None
+    minDepth: Optional[int] = None
+
 
 @dataclass_json
 @dataclass
 class SupplyGraph:
     logical: SupplyGraphDepth
     technical: SupplyGraphDepth
-    totalCount: int
+    totalCount: Optional[int] = None
+
 
 @dataclass_json
 @dataclass
 class RowCoverage:
-    adFormat: AdFormatCoverage
-    channel: SimpleValue
     impressions: Impressions
-    property: SimpleValue
-    supplyGraph: SupplyGraph
+    adFormat: Optional[AdFormatCoverage] = None
+    channel: Optional[SimpleValue] = None
     compensationProvider: Optional[SimpleValue] = None
+    inventoryClassification: Optional[SimpleValue] = None
+    mediaOwner: Optional[SimpleValue] = None
+    property: Optional[SimpleValue] = None
+    seller: Optional[SimpleValue] = None
+    supplyGraph: Optional[SupplyGraph] = None
+    venueCategory: Optional[SimpleValue] = None
+
 
 @dataclass_json
 @dataclass
 class EmissionsComponent:
     emissions: float
+
 
 @dataclass_json
 @dataclass
@@ -125,10 +153,12 @@ class CompensationBreakdown:
     emissions: float
     provider: str
 
+
 @dataclass_json
 @dataclass
 class CompensatedBreakdownStruct:
     compensation: CompensationBreakdown
+
 
 @dataclass_json
 @dataclass
@@ -136,17 +166,21 @@ class Compensated:
     breakdown: CompensatedBreakdownStruct
     total: float
 
+
 @dataclass_json
 @dataclass
 class SimpleBreakdown:
-    adPlatform: EmissionsComponent
-    dataTransfer: EmissionsComponent
+    adPlatform: Optional[EmissionsComponent] = None
+    dataTransfer: Optional[EmissionsComponent] = None
+
 
 @dataclass_json
 @dataclass
 class MediaDistributionBreakdown:
-    corporate: EmissionsComponent
-    dataTransfer: EmissionsComponent
+    corporate: Optional[EmissionsComponent] = None
+    dataTransfer: Optional[EmissionsComponent] = None
+    storageAndTransport: Optional[EmissionsComponent] = None
+
 
 @dataclass_json
 @dataclass
@@ -154,25 +188,37 @@ class ComponentWithBreakdown:
     breakdown: SimpleBreakdown
     total: float
 
+
 @dataclass_json
 @dataclass
 class MediaDistributionComponent:
     breakdown: MediaDistributionBreakdown
     total: float
 
+
 @dataclass_json
 @dataclass
 class RowEmissionsBreakdownDetail:
-    adSelection: ComponentWithBreakdown
-    compensated: Compensated
-    creativeDelivery: ComponentWithBreakdown
-    mediaDistribution: MediaDistributionComponent
+    adSelection: Optional[ComponentWithBreakdown] = None
+    compensated: Optional[Compensated] = None
+    creativeDelivery: Optional[ComponentWithBreakdown] = None
+    disposal: Optional[ComponentWithBreakdown] = None
+    mediaDistribution: Optional[MediaDistributionComponent] = None
+    techManipulation: Optional[ComponentWithBreakdown] = None
+
 
 @dataclass_json
 @dataclass
 class RowEmissionsBreakdown:
     breakdown: RowEmissionsBreakdownDetail
     framework: str
+
+
+@dataclass_json
+@dataclass
+class Error:
+    message: str
+
 
 @dataclass_json
 @dataclass
@@ -183,6 +229,7 @@ class PolicyEvaluationData:
     channel: str
     channelStatus: str
     benchmarksPercentile: int
+
 
 @dataclass_json
 @dataclass
@@ -199,25 +246,28 @@ class Internal:
     isMFA: bool
     policyEvaluationData: PolicyEvaluationData
 
+
 @dataclass_json
 @dataclass
 class Row:
-    coverage: RowCoverage
-    emissionsBreakdown: RowEmissionsBreakdown
     inventoryCoverage: str
-    policies: List[RowPolicy]
-    rowIdentifier: str
-    totalEmissions: float
-    internal: Internal
+    coverage: Optional[RowCoverage] = None
+    emissionsBreakdown: Optional[RowEmissionsBreakdown] = None
+    error: Optional[Error] = None
+    internal: Optional[Internal] = None
+    policies: Optional[List[RowPolicy]] = None
+    rowIdentifier: Optional[str] = None
+    totalEmissions: Optional[float] = None
+
 
 @dataclass
 class MeasureResponse(DataClassJsonMixin):
-    coverage: Coverage
-    policies: List[Policy]
-    requestId: str
     totalEmissions: float
     totalEmissionsBreakdown: EmissionsBreakdown
-    rows: List[Row]
+    coverage: Optional[Coverage] = None
+    policies: Optional[List[Policy]] = None
+    requestId: Optional[str] = None
+    rows: Optional[List[Row]] = None
 
     def __str__(self) -> str:
         return (
